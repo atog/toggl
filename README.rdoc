@@ -1,6 +1,9 @@
 = toggl
 
-Description goes here.
+Toggl API wrapper in a Ruby gem
+
+https://www.toggl.com
+https://www.toggl.com/public/api
 
 == Note on Patches/Pull Requests
  

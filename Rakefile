@@ -5,12 +5,15 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "toggl"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Toggl api ruby gem}
+    gem.description = %Q{Toggl provides a simple REST-style JSON API over standard HTTP - http://www.toggl.com}
     gem.email = "koen@atog.be"
     gem.homepage = "http://github.com/atog/toggl"
     gem.authors = ["Koen Van der Auwera"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.files = FileList['lib/**/*.rb']
+    gem.test_files = []    
+    gem.add_dependency('httparty', '>= 0.5.2')
+    gem.add_dependency('chronic_duration', '>= 0.9.0')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
