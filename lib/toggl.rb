@@ -6,19 +6,20 @@ class Toggl
   include HTTParty
   base_uri "https://toggl.com"
   format :json
-  # debug_output
   
   attr_reader :name, :api_token
   
-  def initialize(token, name="toggl-gem")
+  def initialize(token, name="toggl-gem", debug=false)
     self.class.default_params :output => 'json'
     @api_token = token
     @name = name
+    self.class.debug_output if debug
   end
     
   def create_task(params={})
     workspace   = params[:workspace] || default_workspace_id
     project_id  = find_project_id(params[:project]) || create_project(params, workspace)
+    params[:billable] = true
     
     params.merge!({ :created_with => name, 
                     :workspace => {:id => workspace}, 

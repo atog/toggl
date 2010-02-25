@@ -25,6 +25,10 @@ module TogglCmd
           self[:start] = date
         end
         
+        o.on('-v', '--verbose', 'What\'s happening?') do |debug|
+          self[:debug] = debug
+        end
+        
         o.on_tail('-h', '--help', 'Display this help and exit') do
           puts @opts
           exit
