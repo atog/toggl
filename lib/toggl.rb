@@ -8,10 +8,11 @@ class Toggl
   format :json
   # debug_output
   
-  attr_reader :name
+  attr_reader :name, :api_token
   
   def initialize(token, name="toggl-gem")
-    self.class.default_params :output => 'json', :api_token => token
+    self.class.default_params :output => 'json'
+    @api_token = token
     @name = name
   end
     
@@ -26,15 +27,15 @@ class Toggl
                     :start => start(params[:start]), 
                     :duration => duration(params[:duration])})
                     
-    self.class.post("/api/tasks.json", :body => {:task => params})
+    post 'tasks', {:task => params}
   end
   
   def create_project(params={}, workspace=nil)
     workspace ||= default_workspace_id
-    if project = self.class.post("/api/projects.json", :body => {
+    if project = post("projects", 
                       :project => {:name => params[:project], 
                                    :workspace => {:id => workspace}, 
-                                   :billable => (params[:billable] || true)}})
+                                   :billable => (params[:billable] || true)})
        project["id"]
      end
   end
@@ -68,14 +69,29 @@ class Toggl
   end
   
   def workspaces
-    self.class.get("/api/workspaces.json")
+    get 'workspaces'
   end
   
   def tasks
-    self.class.get("/api/tasks.json")
+    get 'tasks'
   end
   
   def projects
-    self.class.get("/api/projects.json")
+    get 'projects'
   end
+  
+  private
+  
+  def get(resource_name)
+    self.class.get("/api/v1/#{resource_name}.json", :basic_auth => basic_auth)
+  end
+  
+  def post(resource_name, data)
+    self.class.post("/api/v1/#{resource_name}.json", :body => data, :basic_auth => basic_auth)
+  end
+    
+  def basic_auth
+    {:username => self.api_token, :password => "api_token"}
+  end
+  
 end
