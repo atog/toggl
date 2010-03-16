@@ -5,7 +5,7 @@ module TogglCmd
   class Runner
     
     def self.toggl(args)
-      token = IO.readlines(File.expand_path("~/.toggl")).join
+      token = IO.readlines(File.expand_path("~/.toggl")).join.strip
       options = RunnerOptions.new(args)
       if options[:tasks]
         puts Toggl.new(token, "toggl-gem").tasks
