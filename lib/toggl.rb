@@ -73,8 +73,8 @@ class Toggl
     get 'workspaces'
   end
   
-  def tasks
-    get 'tasks'
+  def tasks(params={})
+    get 'tasks', params
   end
   
   def projects
@@ -83,8 +83,8 @@ class Toggl
   
   private
   
-  def get(resource_name)
-    self.class.get("/api/v1/#{resource_name}.json", :basic_auth => basic_auth)
+  def get(resource_name, data={})
+    self.class.get("/api/v1/#{resource_name}.json", :basic_auth => basic_auth, :query => data)
   end
   
   def post(resource_name, data)

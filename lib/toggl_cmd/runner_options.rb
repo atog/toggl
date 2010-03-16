@@ -25,6 +25,14 @@ module TogglCmd
           self[:start] = date
         end
         
+        o.on('--tasks', 'Show tasks') do |tasks|
+          self[:tasks] = tasks
+        end
+
+        o.on('--projects', 'Show projects') do |projects|
+          self[:projects] = projects
+        end
+        
         o.on('-v', '--verbose', 'What\'s happening?') do |debug|
           self[:debug] = debug
         end
