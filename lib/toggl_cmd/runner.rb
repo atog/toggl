@@ -7,7 +7,7 @@ module TogglCmd
     def self.toggl(args)
       options = RunnerOptions.new(args)
       if options.any?
-        token = IO.readlines(File.expand_path("~/.toggl")).join
+        token = IO.readlines(File.expand_path("~/.toggl")).join.strip
         Toggl.new(token, "toggl-gem", options.delete(:debug)).create_task(options)
       else
         puts options.opts
