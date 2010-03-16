@@ -14,6 +14,7 @@ begin
     gem.test_files = []    
     gem.add_dependency('httparty', '>= 0.5.2')
     gem.add_dependency('chronic_duration', '>= 0.9.0')
+    gem.add_dependency('hirb', '>= 0.3.1')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

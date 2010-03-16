@@ -6,5 +6,8 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'toggl'
 require 'toggl_cmd/runner'
 require 'toggl_cmd/runner_options'
+require 'hirb'
+require 'hirb/import_object'
 
+Hirb.enable
 TogglCmd::Runner.toggl(ARGV)
