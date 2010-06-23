@@ -1,5 +1,5 @@
 module TogglCmd
-  
+
   class RunnerOptions < Hash
     attr_reader :opts
 
@@ -24,7 +24,7 @@ module TogglCmd
         o.on('-d', '--date DATE', 'When exactly did it happen?') do |date|
           self[:start] = date
         end
-        
+
         o.on('--tasks', 'Show tasks') do |tasks|
           self[:tasks] = tasks
         end
@@ -32,15 +32,19 @@ module TogglCmd
         o.on('--projects', 'Show projects') do |projects|
           self[:projects] = projects
         end
-        
+
+        o.on('--delete TASK_ID', 'Delete tasks with id') do |task_id|
+          self[:delete] = task_id
+        end
+
         o.on('-v', '--verbose', 'What\'s happening?') do |debug|
           self[:debug] = debug
         end
-        
+
         o.on_tail('-h', '--help', 'Display this help and exit') do
           puts @opts
           exit
-        end        
+        end
 
       end
 
@@ -50,6 +54,6 @@ module TogglCmd
         self[:invalid_argument] = e.message
       end
     end
-    
+
   end
 end

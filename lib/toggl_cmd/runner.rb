@@ -16,6 +16,10 @@ module TogglCmd
         prettify_tasks(Toggl.new(token, NAME).tasks)
       elsif options[:projects]
         prettify_projects(Toggl.new(token, NAME).projects)
+      elsif options[:delete]
+        toggl = Toggl.new(token, NAME)
+        toggl.delete_task(options[:delete])
+        prettify_tasks(toggl.tasks)
       elsif options.any?
         prettify_tasks(Toggl.new(token, NAME, options.delete(:debug)).create_task(options))
       else
