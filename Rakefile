@@ -12,8 +12,8 @@ begin
     gem.authors = ["Koen Van der Auwera"]
     gem.files = FileList['lib/**/*.rb']
     gem.test_files = []
-    gem.add_dependency('crack', '>= 0.1.7')
-    gem.add_dependency('httparty', '>= 0.6.0')
+    gem.add_dependency('crack', '= 0.1.8')
+    gem.add_dependency('httparty', '= 0.6.1')
     gem.add_dependency('chronic_duration', '>= 0.9.0')
     gem.add_dependency('hirb', '>= 0.3.1')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
