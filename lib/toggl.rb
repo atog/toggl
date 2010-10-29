@@ -62,9 +62,12 @@ class Toggl
   def start(value)
     if value
       case value
-      when "today"    : Date.today
-      when "yesterday": Date.today - 1
-      when "tomorrow" : Date.today + 1
+      when "today"
+        Date.today
+      when "yesterday"
+        Date.today - 1
+      when "tomorrow"
+        Date.today + 1
       else
         DateTime.parse(value)
       end
