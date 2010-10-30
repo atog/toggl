@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{toggl}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Koen Van der Auwera"]
-  s.date = %q{2010-10-12}
+  s.date = %q{2010-10-30}
   s.default_executable = %q{toggl}
   s.description = %q{Toggl provides a simple REST-style JSON API over standard HTTP - http://www.toggl.com}
   s.email = %q{koen@atog.be}
