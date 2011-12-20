@@ -18,10 +18,10 @@ module TogglCmd
         prettify_projects(Toggl.new(token, NAME).projects)
       elsif options[:delete]
         toggl = Toggl.new(token, NAME)
-        toggl.delete_task(options[:delete])
-        prettify_tasks(toggl.tasks)
+        toggl.delete_time_entry(options[:delete])
+        prettify_tasks(toggl.time_entries)
       elsif options.any?
-        prettify_tasks(Toggl.new(token, NAME, options.delete(:debug)).create_task(options))
+        prettify_tasks(Toggl.new(token, NAME, options.delete(:debug)).create_time_entry(options))
       else
         puts options.opts
       end
@@ -30,7 +30,6 @@ module TogglCmd
     private
 
     def self.prettify_tasks(values)
-      values = values["data"]
       values = [values] unless values.is_a?(Array)
       values.each do |value|
         value["project"]    = value["project"]["name"]

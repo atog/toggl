@@ -25,11 +25,11 @@ class Toggl
   end
 
   def default_workspace_id
-    self.workspaces["data"].first["id"]
+    self.workspaces.first["id"]
   end
 
   def find_project_id(str)
-    if project = self.projects["data"].find{|project| project["client_project_name"].downcase =~ /#{str}/}
+    if project = self.projects.find{|project| project["client_project_name"].downcase =~ /#{str}/}
       project["id"]
     end
   end
@@ -71,6 +71,7 @@ class Toggl
     workspace   = params[:workspace] || default_workspace_id
     project_id  = find_project_id(params[:project]) || create_project(params, workspace)
     params[:billable] = true
+    params[:start] = Time.now if params[:start].nil?
     params[:start] = params[:start].iso8601
     params.merge!({ :created_with => name,
                     :workspace => {:id => workspace},
