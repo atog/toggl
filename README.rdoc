@@ -12,6 +12,17 @@ If you want to create new tasks from the command line, make sure you create ~/.t
 
 run 'toggl' to see all options.
 
+NOTE: the command line tool is currently broken and needs to be updated for V6 of the API
+
+== examples
+
+toggl_interface = Toggl.new(token, "blah")
+toggl_interface.time_entries
+toggl_interface.time_entries({"start_date" => Date.today-1, "end_date" => Date.today})
+toggl_interface.get_time_entry(12345)
+toggl_interface.delete_time_entry(12345)
+
+
 == Copyright
 
 Copyright (c) 2010 Koen Van der Auwera. See LICENSE for details.
