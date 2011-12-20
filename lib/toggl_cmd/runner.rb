@@ -12,16 +12,16 @@ module TogglCmd
     def self.toggl(args)
       token = IO.readlines(File.expand_path("~/.toggl")).join.strip
       options = RunnerOptions.new(args)
-      if options[:tasks]
-        prettify_tasks(Toggl.new(token, NAME).tasks)
+      if options[:time_entries]
+        prettify_tasks(Toggl.new(token, NAME).time_entries)
       elsif options[:projects]
         prettify_projects(Toggl.new(token, NAME).projects)
       elsif options[:delete]
         toggl = Toggl.new(token, NAME)
-        toggl.delete_task(options[:delete])
-        prettify_tasks(toggl.tasks)
+        toggl.delete_time_entry(options[:delete])
+        prettify_tasks(toggl.time_entries)
       elsif options.any?
-        prettify_tasks(Toggl.new(token, NAME, options.delete(:debug)).create_task(options))
+        prettify_tasks(Toggl.new(token, NAME, options.delete(:debug)).create_time_entry(options))
       else
         puts options.opts
       end
@@ -35,6 +35,7 @@ module TogglCmd
         value["project"]    = value["project"]["name"]
         value["workspace"]  = value["workspace"]["name"]
         value["duration"] = ChronicDuration.output(value["duration"].to_i, :format => :short)
+        value["start"] = Time.parse(value["start"])
         value["start"] = value["start"].strftime("%d/%m/%Y")
       end
       values.view(:class => :table, :fields => TASK_FIELDS)
