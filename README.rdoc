@@ -1,6 +1,6 @@
 = toggl
 
-Toggl API wrapper in a Ruby gem
+Toggl API wrapper in a Ruby gem, this is compatible with v6 of the API
 
 https://www.toggl.com
 
@@ -11,6 +11,27 @@ https://www.toggl.com/public/api
 If you want to create new tasks from the command line, make sure you create ~/.toggl file containing nothing but your API key.
 
 run 'toggl' to see all options.
+
+NOTE: the command line tool is currently broken and needs to be updated for V6 of the API
+
+== examples
+
+ toggl_interface = Toggl.new(token, "blah")
+
+ toggl_interface.time_entries
+
+ toggl_interface.time_entries({"start_date" => Date.today-1, "end_date" => Date.today})
+
+ toggl_interface.get_time_entry(12345)
+
+ toggl_interface.delete_time_entry(12345)
+
+ entry = toggl_interface.create_time_entry({ "duration" => 900, :start => Time.now, :description => "blabla"})
+
+ toggl_interface.update_time_entry(entry)
+
+similar methods exist for clients, projects, and tasks, check the source while we work on better documentation
+
 
 == Copyright
 

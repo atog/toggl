@@ -25,8 +25,8 @@ module TogglCmd
           self[:start] = date
         end
 
-        o.on('--tasks', 'Show tasks') do |tasks|
-          self[:tasks] = tasks
+        o.on('--time_entries', 'Show time entries') do |time_entries|
+          self[:time_entries] = time_entries
         end
 
         o.on('--projects', 'Show projects') do |projects|
