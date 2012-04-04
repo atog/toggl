@@ -2,7 +2,7 @@ require "rubygems"
 require "httparty"
 require "chronic_duration"
 require "multi_json"
-
+require "pp"
 class Toggl
   include HTTParty
   base_uri "https://www.toggl.com"
@@ -16,12 +16,6 @@ class Toggl
     @api_token = token
     @name = name
     self.class.debug_output if debug
-    auth
-  end
-
-  def auth
-    session_response = get "sessions"
-    self.class.default_cookies.add_cookies(session_response.headers["set-cookie"][0])
   end
 
   def default_workspace_id
@@ -142,7 +136,7 @@ class Toggl
   end
 
   private
-
+  
   def get(resource_name, data={})
     response = self.class.get("/api/v6/#{resource_name}.json", :basic_auth => basic_auth, :query => data)
     response['data'].nil? ? response : response['data'] 
