@@ -3,6 +3,9 @@ require "httparty"
 require "chronic_duration"
 require "multi_json"
 require "pp"
+
+YAML::ENGINE.yamler = 'syck'
+
 class Toggl
   include HTTParty
   base_uri "https://www.toggl.com"
